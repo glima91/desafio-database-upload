@@ -9,20 +9,20 @@ class Transaction {
 
   @Column()
   title: string;
-  
+
   @Column()
   type: 'income' | 'outcome';
-  
+
   @Column()
   value: number;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
-  
+
   @Column()
   category_id: string;
-   
+
   @CreateDateColumn()
   created_at: Date;
 
